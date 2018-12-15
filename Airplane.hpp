@@ -2,6 +2,9 @@
 #include <iostream>
 #include "AirplaneClass.hpp"
 
+
+#ifndef AIRPLANE_HPP
+#define AIRPLANE_HPP
 class Airplane
 {
 
@@ -31,3 +34,5 @@ public:
     void setTankVolume(int tankVolume);
     void setAverageSpeed(int averageSpeed);
 };
+
+#endif // AIRPLANE_HPP

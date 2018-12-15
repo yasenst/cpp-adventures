@@ -1,5 +1,7 @@
 #include <string>
 
+#ifndef AIRPLANECLASS_HPP
+#define AIRPLANECLASS_HPP
 class AirplaneClass
 {
 
@@ -26,4 +28,7 @@ public:
     void setSeats(int seats);
     void setTrackLength(int trackLength);
 };
+
+
+#endif // AIRPLANECLASS_HPP
 
