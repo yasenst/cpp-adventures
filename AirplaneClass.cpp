@@ -1,9 +1,14 @@
 #include "AirplaneClass.hpp"
 
-AirplaneClass::AirplaneClass() {}
+std::vector<Airplane> airplanes;
+
+AirplaneClass::AirplaneClass() {
+    this->id = (++AirplaneClass::count);
+}
 
 AirplaneClass::AirplaneClass(std::string manufacturer, std::string model, int seats, int trackLength)
 {
+    this->id = (++AirplaneClass::count);
     this->manufacturer = manufacturer;
     this->model = model;
     this->seats = seats;
@@ -12,11 +17,34 @@ AirplaneClass::AirplaneClass(std::string manufacturer, std::string model, int se
 
 AirplaneClass::AirplaneClass(const AirplaneClass &obj)
 {
+    std::cout << "Copy constructor of AirplaneClass.." << std::endl;
+    id = obj.id;
     manufacturer = obj.manufacturer;
     model = obj.model;
     seats = obj.seats;
     trackLength = obj.trackLength;
 }
+
+AirplaneClass::~AirplaneClass()
+{
+    std::cout << "Destroyed AirplaneClass " + manufacturer + " " + model << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& stream, const AirplaneClass& obj)
+{
+    stream << "Airplane Class ID: " << obj.id << " - " << obj.getManufacturer() << " " << obj.model;
+
+
+    for( std::vector<Airplane>::const_iterator it = obj.airplanes.begin(); it != obj.airplanes.end(); ++it)
+                 stream << (*it) << std::endl;
+
+
+    return stream;
+}
+
+int AirplaneClass::count = 0;
+
+int AirplaneClass::getId() { return id; }
 
 std::string AirplaneClass::getManufacturer() const { return manufacturer; }
 
@@ -33,3 +61,13 @@ void AirplaneClass::setModel(std::string model) { this->model = model; }
 void AirplaneClass::setSeats(int seats) { this->seats = seats; }
 
 void AirplaneClass::setTrackLength(int trackLength) { this->trackLength = trackLength; }
+
+std::vector<Airplane> AirplaneClass::getAirplanes()
+{
+    return airplanes;
+}
+
+void AirplaneClass::addAirplane(Airplane airplane)
+{
+    airplanes.push_back(airplane);
+}

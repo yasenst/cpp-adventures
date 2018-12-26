@@ -1,17 +1,18 @@
 #include<vector>
-#include "Airplane.hpp"
+#include "AirplaneClass.hpp"
 
 class AirplaneManager
 {
 private:
 
-    std::vector<Airplane> airplanes;
-    std::vector<AirplaneClass> airplaneClasses;
+    //std::vector<Airplane*> airplanes;
+    std::vector<AirplaneClass*> airplaneClasses;
 
 public:
     AirplaneManager();
-    void addAirplane(Airplane airplane);
-    void addAirplaneClass(AirplaneClass airplaneClass);
-    std::vector<Airplane> getAirplanes();
-    std::vector<AirplaneClass> getAirplaneClasses();
+    ~AirplaneManager();
+    void addAirplane();
+    void addAirplaneClass(AirplaneClass* airplaneClass);
+    std::vector<AirplaneClass*> getAirplaneClasses();
+    void showAirplaneClasses();
 };

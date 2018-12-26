@@ -1,7 +1,4 @@
-#include <string>
-#include <iostream>
-#include "AirplaneClass.hpp"
-
+#include<iostream>
 
 #ifndef AIRPLANE_HPP
 #define AIRPLANE_HPP
@@ -12,20 +9,19 @@ private:
 
     static int count;
     int id;
-    AirplaneClass airplaneClass;
     int averageSpeed;
     int tankVolume;
     double fuelConsumptionPerKm;
 
 public:
 
-    Airplane(AirplaneClass airplaneClass, int averageSpeed, int tankVolume, double fuelConsumptionPerKm);
+    Airplane(int averageSpeed, int tankVolume, double fuelConsumptionPerKm);
     Airplane(const Airplane &obj);
+    ~Airplane();
 
     friend std::ostream &operator<<(std::ostream& stream, const Airplane& obj);
 
     int getId();
-    AirplaneClass getAirplaneClass();
     double getFuelConsumption() const;
     int getTankVolume() const;
     int getAverageSpeed() const;
