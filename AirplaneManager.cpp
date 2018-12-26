@@ -6,18 +6,20 @@ std::vector<AirplaneClass*> airplaneClasses;
 
 AirplaneManager::AirplaneManager()
 {
-std::cout << "created managers" << std::endl;
+std::cout << "created manager" << std::endl;
 }
 
 AirplaneManager::~AirplaneManager()
 {
-     for(int i = 0; i < airplaneClasses.size(); i++)
+    std::cout << "Entering AirplaneManager destructor." << std::endl;
+     for(uint32_t i = 0; i < airplaneClasses.size(); i++)
     {
        delete airplaneClasses[i];
-       std::cout << "destructor invoked" << std::endl;
+       std::cout << "Deleted AirplaneClass." << std::endl;
     }
+    std::cout << "Leaving AirplaneManager destructor." << std::endl;
 }
-/*
+
 void AirplaneManager::addAirplane()
 {
     std::cout << "Available Airplane classes: " << std::endl;
@@ -39,22 +41,41 @@ void AirplaneManager::addAirplane()
     std::cout << "Fuel consumption per km: ";
     std::cin >> fuelConsumptionPerKm;
 
-    Airplane airplane(averageSpeed, tankVolume, fuelConsumptionPerKm);
+    Airplane* airplane = new Airplane(averageSpeed, tankVolume, fuelConsumptionPerKm);
 
-    for (AirplaneClass a : airplaneClasses)
+    for (AirplaneClass* a : airplaneClasses)
     {
-        if (a.getId() == classId)
+        if (a->getId() == classId)
         {
-            a.addAirplane(airplane);
-            std::cout << a.getAirplanes().size();
+            a->addAirplane(airplane);
+            std::cout << "Size of vector of airplanes  " << a->getAirplanes().size() << std::endl;
         }
     }
+
+
 }
-*/
 
 
-void AirplaneManager::addAirplaneClass(AirplaneClass* airplaneClass)
+
+void AirplaneManager::addAirplaneClass()
 {
+            std::string manufacturer;
+            std::string model;
+            int seats;
+            int trackLength;
+
+            std::cout << "Manufacturer: ";
+            std::cin >> std::ws;
+            std::getline(std::cin, manufacturer);
+            std::cout << "Model: ";
+            std::cin >> model;
+            std::cout << "Number of seats: ";
+            std::cin >> seats;
+            std::cout << "Track length: ";
+            std::cin >> trackLength;
+
+            AirplaneClass* airplaneClass = new AirplaneClass(manufacturer, model, seats, trackLength);
+            //airplaneManager->addAirplaneClass(airplaneClass);
 
     airplaneClasses.push_back(airplaneClass);
 }

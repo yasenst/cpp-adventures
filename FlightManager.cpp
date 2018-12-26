@@ -1,34 +1,42 @@
 #include "FlightManager.hpp"
 #include "Airplane.hpp"
 
-FlightManager::FlightManager() {}
+FlightManager::FlightManager()
+{
+    this->distance = 0.0;
+}
+
+FlightManager::FlightManager(double distance)
+{
+    this->distance = distance;
+}
 
 void FlightManager::setDistance(double distance)
 {
     this->distance = distance;
 }
 
-void FlightManager::analyzeFlight(const Airplane& airplane)
+void FlightManager::analyzeFlight(Airplane* airplane)
 {
     if (isFlightPossible(airplane) == false)
         return;
 
-    std::cout << airplane << ", duration: " << calculateFlightDuration(airplane) << ", fuel to use: " << calculateFuelCost(airplane);
+    std::cout << *airplane << ", duration: " << calculateFlightDuration(airplane) << ", fuel to use: " << calculateFuelCost(airplane) << std::endl;
 }
 
-bool FlightManager::isFlightPossible(const Airplane& airplane)
+bool FlightManager::isFlightPossible(Airplane* airplane)
 {
     double fuelAmountNeeded = calculateFuelCost(airplane);
 
-    return (fuelAmountNeeded <= airplane.getTankVolume()) ? true : false;
+    return (fuelAmountNeeded <= airplane->getTankVolume()) ? true : false;
 }
 
-double FlightManager::calculateFlightDuration(const Airplane& airplane)
+double FlightManager::calculateFlightDuration(Airplane* airplane)
 {
-    return distance / airplane.getAverageSpeed();
+    return distance / airplane->getAverageSpeed();
 }
 
-double FlightManager::calculateFuelCost(const Airplane& airplane)
+double FlightManager::calculateFuelCost(Airplane* airplane)
 {
-    return distance * airplane.getFuelConsumption();
+    return distance * airplane->getFuelConsumption();
 }

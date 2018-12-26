@@ -12,7 +12,7 @@ public:
     AirplaneManager();
     ~AirplaneManager();
     void addAirplane();
-    void addAirplaneClass(AirplaneClass* airplaneClass);
+    void addAirplaneClass();
     std::vector<AirplaneClass*> getAirplaneClasses();
     void showAirplaneClasses();
 };

@@ -19,14 +19,13 @@ Airplane::Airplane(const Airplane &obj)
 
 Airplane::~Airplane()
 {
-    std::cout << "Destroyed Airplane " + id << std::endl;
+    std::cout << "Deleting Airplane " << id << std::endl;
 }
 
 
 std::ostream& operator<<(std::ostream& stream, const Airplane& obj)
 {
-    stream << "Airplane #" << obj.id << ", tank volume: " << obj.tankVolume << ", average speed " << obj.averageSpeed
-    << ", fuel consumption per km: " << obj.fuelConsumptionPerKm << ")" << '\n';
+    stream << "Airplane #" << obj.id;
     return stream;
 }
 

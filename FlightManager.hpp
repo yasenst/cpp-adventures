@@ -7,10 +7,11 @@ private:
     double distance;
 public:
     FlightManager();
+    FlightManager(double distance);
     void setDistance(double distance);
-    void analyzeFlight(const Airplane& airplane);
-    bool isFlightPossible(const Airplane& airplane);
-    double calculateFlightDuration(const Airplane& airplane);
-    double calculateFuelCost(const Airplane& airplane);
+    void analyzeFlight(Airplane* airplane);
+    bool isFlightPossible(Airplane* airplane);
+    double calculateFlightDuration(Airplane* airplane);
+    double calculateFuelCost(Airplane* airplane);
 };
 #endif // FLIGHTMANAGER_HPP

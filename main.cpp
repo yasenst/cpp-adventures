@@ -12,7 +12,6 @@ int main()
 {
 
     AirplaneManager* airplaneManager = new AirplaneManager();
-    FlightManager flightManager;
     /*
     AirplaneClass a("Airbus", "a380", 125, 600);
     Airplane* plane2 = new Airplane(290,1400,45.5);
@@ -38,8 +37,9 @@ int main()
 
         switch (choice) {
         case 1:
+            /*
             {
-                std::string manufacturer;
+            std::string manufacturer;
             std::string model;
             int seats;
             int trackLength;
@@ -57,32 +57,33 @@ int main()
             AirplaneClass* airplaneClass = new AirplaneClass(manufacturer, model, seats, trackLength);
             airplaneManager->addAirplaneClass(airplaneClass);
             }
-
-
+            */
+            airplaneManager->addAirplaneClass();
             std::cout << "Size of vector of AirplaneClass-es: " << airplaneManager->getAirplaneClasses().size() << std::endl;
             airplaneManager->showAirplaneClasses();
             break;
         case 2:
-            //airplaneManager.addAirplane();
+            airplaneManager->addAirplane();
+            std::cout << "Size of vector of AirplaneClass-es: " << airplaneManager->getAirplaneClasses().size() << std::endl;
             break;
         case 3:
-            double distance;
-            std::cout << "Distance: ";
-            std::cin >> distance;
-            flightManager.setDistance(distance);
-            //airplaneManager.showAirplaneClasses();
-            /*
-            for (AirplaneClass airplaneClass : airplaneManager.getAirplaneClasses())
             {
-                std::cout << airplaneClass.getAirplanes().size();
-               //std::cout << airplaneClass.getAirplanes();
-              for (Airplane air : airplaneClass.getAirplanes())
-              {
-                  std::cout << "KUR" << std::endl;
-              }
+                double distance;
+                std::cout << "Distance: ";
+                std::cin >> distance;
+                FlightManager flightManager(distance);
 
+                for (AirplaneClass* airplaneClass : airplaneManager->getAirplaneClasses())
+                {
+                    std::cout << "For " << *airplaneClass << ":" << std::endl;
+                  for (Airplane* airplane : airplaneClass->getAirplanes())
+                  {
+                      flightManager.analyzeFlight(airplane);
+                  }
+                }
             }
-            */
+
+
             break;
         case 4:cout << "BYE" << endl;
         default:

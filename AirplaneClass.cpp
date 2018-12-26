@@ -1,6 +1,6 @@
 #include "AirplaneClass.hpp"
 
-std::vector<Airplane> airplanes;
+std::vector<Airplane*> airplanes;
 
 AirplaneClass::AirplaneClass() {
     this->id = (++AirplaneClass::count);
@@ -27,17 +27,23 @@ AirplaneClass::AirplaneClass(const AirplaneClass &obj)
 
 AirplaneClass::~AirplaneClass()
 {
-    std::cout << "Destroyed AirplaneClass " + manufacturer + " " + model << std::endl;
+    std::cout << "Entering AirplaneClass destructor " + manufacturer + " " + model << std::endl;
+
+     for(int i = 0; i < airplanes.size(); i++)
+    {
+       delete airplanes[i];
+       std::cout << "Deleted " << std::endl;
+    }
 }
 
 std::ostream& operator<<(std::ostream& stream, const AirplaneClass& obj)
 {
     stream << "Airplane Class ID: " << obj.id << " - " << obj.getManufacturer() << " " << obj.model;
 
-
+    /*
     for( std::vector<Airplane>::const_iterator it = obj.airplanes.begin(); it != obj.airplanes.end(); ++it)
                  stream << (*it) << std::endl;
-
+    */
 
     return stream;
 }
@@ -62,12 +68,21 @@ void AirplaneClass::setSeats(int seats) { this->seats = seats; }
 
 void AirplaneClass::setTrackLength(int trackLength) { this->trackLength = trackLength; }
 
-std::vector<Airplane> AirplaneClass::getAirplanes()
+std::vector<Airplane*> AirplaneClass::getAirplanes()
 {
     return airplanes;
 }
 
-void AirplaneClass::addAirplane(Airplane airplane)
+void AirplaneClass::addAirplane(Airplane* airplane)
 {
     airplanes.push_back(airplane);
+    showAirplanes();
+}
+
+void AirplaneClass::showAirplanes()
+{
+     for(std::vector<Airplane*>::iterator it = airplanes.begin(); it != airplanes.end(); ++it)
+    {
+        std::cout << *(*it) << std::endl;
+    }
 }

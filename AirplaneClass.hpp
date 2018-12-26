@@ -15,7 +15,7 @@ private:
     std::string model;
     int seats;
     int trackLength;
-    std::vector<Airplane> airplanes;
+    std::vector<Airplane*> airplanes;
 
 public:
 
@@ -36,8 +36,9 @@ public:
     void setModel(std::string model);
     void setSeats(int seats);
     void setTrackLength(int trackLength);
-    std::vector<Airplane> getAirplanes();
-    void addAirplane(Airplane airplane);
+    std::vector<Airplane*> getAirplanes();
+    void addAirplane(Airplane* airplane);
+    void showAirplanes();
 };
 
 
