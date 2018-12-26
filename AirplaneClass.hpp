@@ -32,6 +32,8 @@ public:
     int getSeats() const;
     int getTrackLength() const;
 
+    void setId(int id);
+    static void setCount(int c);
     void setManufacturer(std::string manufacturer);
     void setModel(std::string model);
     void setSeats(int seats);

@@ -15,4 +15,9 @@ public:
     void addAirplaneClass();
     std::vector<AirplaneClass*> getAirplaneClasses();
     void showAirplaneClasses();
+    void writeAirplanes(std::ostream& o, const std::vector<AirplaneClass*>& AirplaneClassToBeWritten);
+    void writeAirplanes(std::ostream&& o, const std::vector<AirplaneClass*>& AirplaneClassToBeWritten);
+    void loadAirplaneClasses();
+    void loadAirplanes();
+    void saveAirplanes();
 };

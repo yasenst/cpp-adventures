@@ -38,7 +38,8 @@ AirplaneClass::~AirplaneClass()
 
 std::ostream& operator<<(std::ostream& stream, const AirplaneClass& obj)
 {
-    stream << "Airplane Class ID: " << obj.id << " - " << obj.getManufacturer() << " " << obj.model;
+     stream << obj.id << " " << obj.manufacturer << " " << obj.model << " " << obj.seats << " " << obj.trackLength << '\n';
+    //stream << "Airplane Class ID: " << obj.id << " - " << obj.getManufacturer() << " " << obj.model;
 
     /*
     for( std::vector<Airplane>::const_iterator it = obj.airplanes.begin(); it != obj.airplanes.end(); ++it)
@@ -60,6 +61,8 @@ int AirplaneClass::getSeats() const { return seats; }
 
 int AirplaneClass::getTrackLength() const { return trackLength; }
 
+void AirplaneClass::setId(int id) { this->id = id; }
+
 void AirplaneClass::setManufacturer(std::string manufacturer) { this->manufacturer = manufacturer; }
 
 void AirplaneClass::setModel(std::string model) { this->model = model; }
@@ -76,7 +79,7 @@ std::vector<Airplane*> AirplaneClass::getAirplanes()
 void AirplaneClass::addAirplane(Airplane* airplane)
 {
     airplanes.push_back(airplane);
-    showAirplanes();
+    //showAirplanes();
 }
 
 void AirplaneClass::showAirplanes()
@@ -85,4 +88,9 @@ void AirplaneClass::showAirplanes()
     {
         std::cout << *(*it) << std::endl;
     }
+}
+
+void AirplaneClass::setCount(int c)
+{
+    count = c;
 }

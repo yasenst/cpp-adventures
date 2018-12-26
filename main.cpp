@@ -12,6 +12,8 @@ int main()
 {
 
     AirplaneManager* airplaneManager = new AirplaneManager();
+    airplaneManager->loadAirplaneClasses();
+    airplaneManager->loadAirplanes();
     /*
     AirplaneClass a("Airbus", "a380", 125, 600);
     Airplane* plane2 = new Airplane(290,1400,45.5);
@@ -88,6 +90,7 @@ int main()
         case 4:cout << "BYE" << endl;
         default:
             std::cout << "Invoked default case"<< std::endl;
+            airplaneManager->saveAirplanes();
             delete airplaneManager;
             exit(0);
         }
