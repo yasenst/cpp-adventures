@@ -30,7 +30,12 @@ int main()
 
         switch (choice) {
         case 1:
-            airplaneManager->addAirplaneClass();
+            try {
+                airplaneManager->addAirplaneClass();
+            } catch (const char* msg) {
+                std::cerr << msg << " Airplane Class not created." << std::endl;
+            }
+
             break;
         case 2:
             airplaneManager->addAirplane();

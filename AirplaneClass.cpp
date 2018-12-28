@@ -2,17 +2,18 @@
 
 std::vector<Airplane*> airplanes;
 
-AirplaneClass::AirplaneClass() {
+AirplaneClass::AirplaneClass()
+{
     this->id = (++AirplaneClass::count);
 }
 
 AirplaneClass::AirplaneClass(std::string manufacturer, std::string model, int seats, int trackLength)
 {
+    setManufacturer(manufacturer);
+    setModel(model);
+    setSeats(seats);
+    setTrackLength(trackLength);
     this->id = (++AirplaneClass::count);
-    this->manufacturer = manufacturer;
-    this->model = model;
-    this->seats = seats;
-    this->trackLength = trackLength;
 }
 
 AirplaneClass::AirplaneClass(const AirplaneClass &obj)
@@ -28,8 +29,7 @@ AirplaneClass::AirplaneClass(const AirplaneClass &obj)
 AirplaneClass::~AirplaneClass()
 {
     //std::cout << "Entering AirplaneClass destructor " + manufacturer + " " + model << std::endl;
-
-    for(int i = 0; i < airplanes.size(); i++)
+    for(unsigned int i = 0; i < airplanes.size(); i++)
     {
        delete airplanes[i];
        //std::cout << "Deleted " << std::endl;
@@ -57,13 +57,35 @@ int AirplaneClass::getTrackLength() const { return trackLength; }
 
 void AirplaneClass::setId(int id) { this->id = id; }
 
-void AirplaneClass::setManufacturer(std::string manufacturer) { this->manufacturer = manufacturer; }
+void AirplaneClass::setManufacturer(std::string manufacturer)
+{
+    if (manufacturer.empty() || manufacturer.length() <= 1)
+        throw "Manufacturer name should be at least 2 characters!";
+    this->manufacturer = manufacturer;
+}
 
-void AirplaneClass::setModel(std::string model) { this->model = model; }
+void AirplaneClass::setModel(std::string model)
+{
+    if (model.empty() || model.length() <= 1)
+        throw "Model name should be at least 2 characters!";
+    this->model = model;
+}
 
-void AirplaneClass::setSeats(int seats) { this->seats = seats; }
+void AirplaneClass::setSeats(int seats)
+{
+    if (seats <= 0)
+        throw "Number of seats must be a positive number!";
 
-void AirplaneClass::setTrackLength(int trackLength) { this->trackLength = trackLength; }
+    this->seats = seats;
+}
+
+void AirplaneClass::setTrackLength(int trackLength)
+{
+    if (trackLength <= 0)
+        throw "Track length must be a positive number!";
+
+    this->trackLength = trackLength;
+}
 
 std::vector<Airplane*> AirplaneClass::getAirplanes()
 {
@@ -77,7 +99,7 @@ void AirplaneClass::addAirplane(Airplane* airplane)
 
 void AirplaneClass::showAirplanes()
 {
-     for(std::vector<Airplane*>::iterator it = airplanes.begin(); it != airplanes.end(); ++it)
+    for(std::vector<Airplane*>::iterator it = airplanes.begin(); it != airplanes.end(); ++it)
     {
         std::cout << *(*it) << std::endl;
     }

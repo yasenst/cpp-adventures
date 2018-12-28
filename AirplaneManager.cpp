@@ -89,7 +89,7 @@ void AirplaneManager::showAirplaneClasses()
 {
     for(std::vector<AirplaneClass*>::iterator it = airplaneClasses.begin(); it != airplaneClasses.end(); ++it)
     {
-        std::cout << "ID #" << *(*it) << std::endl;
+        std::cout << "ID #" << *(*it);
     }
 }
 
