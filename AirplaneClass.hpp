@@ -31,6 +31,7 @@ public:
     std::string getModel() const;
     int getSeats() const;
     int getTrackLength() const;
+    std::vector<Airplane*> getAirplanes();
 
     void setId(int id);
     static void setCount(int c);
@@ -38,7 +39,7 @@ public:
     void setModel(std::string model);
     void setSeats(int seats);
     void setTrackLength(int trackLength);
-    std::vector<Airplane*> getAirplanes();
+
     void addAirplane(Airplane* airplane);
     void showAirplanes();
 };

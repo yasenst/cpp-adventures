@@ -16,12 +16,13 @@ void FlightManager::setDistance(double distance)
     this->distance = distance;
 }
 
-void FlightManager::analyzeFlight(Airplane* airplane)
+void FlightManager::analyzeFlight(Airplane *airplane)
 {
     if (isFlightPossible(airplane) == false)
         return;
 
-    std::cout << *airplane << ", duration: " << calculateFlightDuration(airplane) << ", fuel to use: " << calculateFuelCost(airplane) << std::endl;
+    std::cout.precision(1);
+    std::cout << "Airplane #" << airplane->getId() << " - flight duration: " << std::fixed << calculateFlightDuration(airplane) << " hours, fuel to use: " << calculateFuelCost(airplane) << " liters." << std::endl;
 }
 
 bool FlightManager::isFlightPossible(Airplane* airplane)

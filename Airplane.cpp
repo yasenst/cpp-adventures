@@ -19,7 +19,7 @@ Airplane::Airplane(const Airplane &obj)
 
 Airplane::~Airplane()
 {
-    std::cout << "Deleting Airplane " << id << std::endl;
+    //std::cout << "Deleting Airplane " << id << std::endl;
 }
 
 

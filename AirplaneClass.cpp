@@ -27,24 +27,18 @@ AirplaneClass::AirplaneClass(const AirplaneClass &obj)
 
 AirplaneClass::~AirplaneClass()
 {
-    std::cout << "Entering AirplaneClass destructor " + manufacturer + " " + model << std::endl;
+    //std::cout << "Entering AirplaneClass destructor " + manufacturer + " " + model << std::endl;
 
-     for(int i = 0; i < airplanes.size(); i++)
+    for(int i = 0; i < airplanes.size(); i++)
     {
        delete airplanes[i];
-       std::cout << "Deleted " << std::endl;
+       //std::cout << "Deleted " << std::endl;
     }
 }
 
 std::ostream& operator<<(std::ostream& stream, const AirplaneClass& obj)
 {
-     stream << obj.id << " " << obj.manufacturer << " " << obj.model << " " << obj.seats << " " << obj.trackLength << '\n';
-    //stream << "Airplane Class ID: " << obj.id << " - " << obj.getManufacturer() << " " << obj.model;
-
-    /*
-    for( std::vector<Airplane>::const_iterator it = obj.airplanes.begin(); it != obj.airplanes.end(); ++it)
-                 stream << (*it) << std::endl;
-    */
+    stream << obj.id << " " << obj.manufacturer << " " << obj.model << " " << obj.seats << " " << obj.trackLength << '\n';
 
     return stream;
 }
@@ -79,7 +73,6 @@ std::vector<Airplane*> AirplaneClass::getAirplanes()
 void AirplaneClass::addAirplane(Airplane* airplane)
 {
     airplanes.push_back(airplane);
-    //showAirplanes();
 }
 
 void AirplaneClass::showAirplanes()
