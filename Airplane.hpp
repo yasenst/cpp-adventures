@@ -2,6 +2,7 @@
 
 #ifndef AIRPLANE_HPP
 #define AIRPLANE_HPP
+
 class Airplane
 {
 
@@ -16,7 +17,7 @@ private:
 
 public:
 
-    Airplane(int averageSpeed, int tankVolume, double fuelConsumptionPerKm);
+    Airplane(std::string averageSpeed, std::string tankVolume, std::string fuelConsumptionPerKm);
     Airplane(const Airplane &obj);
     ~Airplane();
 
@@ -24,16 +25,16 @@ public:
 
     int getId();
     int getClassId();
-    double getFuelConsumption() const;
     int getTankVolume() const;
     int getAverageSpeed() const;
+    double getFuelConsumption() const;
 
     static void setCount(int c);
     void setId(int id);
     void setClassId(int classId);
-    void setFuelConsumptionPerKm(double fuelConsumption);
-    void setTankVolume(int tankVolume);
-    void setAverageSpeed(int averageSpeed);
+    void setFuelConsumptionPerKm(std::string fuelConsumption);
+    void setTankVolume(std::string tankVolume);
+    void setAverageSpeed(std::string averageSpeed);
 };
 
 #endif // AIRPLANE_HPP

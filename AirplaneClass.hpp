@@ -20,7 +20,7 @@ private:
 public:
 
     AirplaneClass();
-    AirplaneClass(std::string, std::string, int, int);
+    AirplaneClass(std::string, std::string, std::string, std::string);
     AirplaneClass(const AirplaneClass &obj);
     ~AirplaneClass();
 
@@ -28,7 +28,7 @@ public:
 
     int getId();
     std::string getManufacturer() const;
-    std::string getModel() const;
+    std::string getModel();
     int getSeats() const;
     int getTrackLength() const;
     std::vector<Airplane*> getAirplanes();
@@ -37,8 +37,8 @@ public:
     static void setCount(int c);
     void setManufacturer(std::string manufacturer);
     void setModel(std::string model);
-    void setSeats(int seats);
-    void setTrackLength(int trackLength);
+    void setSeats(std::string seats);
+    void setTrackLength(std::string trackLength);
 
     void addAirplane(Airplane* airplane);
     void showAirplanes();

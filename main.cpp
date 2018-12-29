@@ -1,10 +1,13 @@
 #include <iostream>
-#include <stdlib.h>
-#include <vector>
+//#include <stdlib.h>
+//#include <vector>
+//#include <string>
+#include <cstdlib>
 #include "AirplaneManager.hpp"
 #include "AirplaneClass.hpp"
 #include "FlightManager.hpp"
 #include "Airplane.hpp"
+
 
 int main()
 {
@@ -13,6 +16,7 @@ int main()
     airplaneManager->loadAirplaneClasses();
     airplaneManager->loadAirplanes();
 
+    std::string input;
     int choice;
 
     do {
@@ -25,7 +29,13 @@ int main()
 
         do {
             std::cout << "Enter number of choice: " << std::endl;
-            std::cin >> choice;
+            std::cin >> input;
+            try {
+                choice = std::stoi(input);
+            } catch (const std::invalid_argument& ia) {
+                std::cerr << "No such option! ";
+            }
+
         } while (choice < 1 || choice > 4);
 
         switch (choice) {
@@ -35,18 +45,33 @@ int main()
             } catch (const char* msg) {
                 std::cerr << msg << " Airplane Class not created." << std::endl;
             }
-
             break;
         case 2:
-            airplaneManager->addAirplane();
+            try {
+                airplaneManager->addAirplane();
+            } catch (const char* msg) {
+                std::cerr << msg << " Airplane not created." << std::endl;
+            }
+
             break;
         case 3:
             {
-                double distance;
+                std::string distance;
                 std::cout << "Distance(in km): ";
                 std::cin >> distance;
 
-                FlightManager flightManager(distance);
+                double distanceToDouble;
+
+                try {
+                    distanceToDouble = std::stod(distance);
+                } catch (const std::invalid_argument& ia) {
+                    std::cerr << "Distance must be a number!" << '\n';
+                    break;
+                }
+
+                FlightManager flightManager(distanceToDouble);
+
+                std::cout << "Airplanes, and their corresponding class, which can travel " << distanceToDouble << " km:" << std::endl;
 
                 for (AirplaneClass *airplaneClass : airplaneManager->getAirplaneClasses())
                 {

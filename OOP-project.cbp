@@ -32,6 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Airplane.cpp" />
+		<Unit filename="Airplane.hpp" />
+		<Unit filename="AirplaneClass.cpp" />
+		<Unit filename="AirplaneClass.hpp" />
+		<Unit filename="AirplaneManager.cpp" />
+		<Unit filename="AirplaneManager.hpp" />
+		<Unit filename="FlightManager.cpp" />
+		<Unit filename="FlightManager.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

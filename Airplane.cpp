@@ -1,12 +1,11 @@
 #include "Airplane.hpp"
-//#include "AirplaneClass.hpp"
 
-Airplane::Airplane(int averageSpeed, int tankVolume,  double fuelConsumptionPerKm)
+Airplane::Airplane(std::string averageSpeed, std::string tankVolume,  std::string fuelConsumptionPerKm)
 {
+    setAverageSpeed(averageSpeed);
+    setTankVolume(tankVolume);
+    setFuelConsumptionPerKm(fuelConsumptionPerKm);
     this->id = (++count);
-    this->averageSpeed = averageSpeed;
-    this->tankVolume = tankVolume;
-    this->fuelConsumptionPerKm = fuelConsumptionPerKm;
 }
 
 Airplane::Airplane(const Airplane &obj)
@@ -47,8 +46,50 @@ void Airplane::setId(int id) { this->id = id; }
 
 void Airplane::setClassId(int classId) { this->classId = classId; }
 
-void Airplane::setFuelConsumptionPerKm(double fuelConsumptionPerKm) { this->fuelConsumptionPerKm = fuelConsumptionPerKm; }
+void Airplane::setFuelConsumptionPerKm(std::string fuelConsumptionPerKm)
+{
+    double fuelConsumptionPerKmToDouble;
 
-void Airplane::setTankVolume(int tankVolume) { this->tankVolume = tankVolume; }
+    try {
+        fuelConsumptionPerKmToDouble = std::stod(fuelConsumptionPerKm);
+    } catch (const std::invalid_argument& ia) {
+        throw "Fuel consumption must be a number!";
+    }
 
-void Airplane::setAverageSpeed(int averageSpeed) { this->averageSpeed = averageSpeed; }
+    if (fuelConsumptionPerKmToDouble <= 0.0)
+        throw "Fuel consumption must be a positive number!";
+
+    this->fuelConsumptionPerKm = fuelConsumptionPerKmToDouble;
+}
+
+void Airplane::setTankVolume(std::string tankVolume)
+{
+    int tankVolumeToInt;
+
+    try {
+        tankVolumeToInt = std::stoi(tankVolume);
+    } catch (const std::invalid_argument& ia) {
+        throw "Tank volume must be an integer!";
+    }
+
+    if (tankVolumeToInt <= 0)
+        throw "Tank volume must be a positive number!";
+
+    this->tankVolume = tankVolumeToInt;
+}
+
+void Airplane::setAverageSpeed(std::string averageSpeed)
+{
+     int averageSpeedToInt;
+
+    try {
+        averageSpeedToInt = std::stoi(averageSpeed);
+    } catch (const std::invalid_argument& ia) {
+        throw "Average speed must be an integer!";
+    }
+
+    if (averageSpeedToInt <= 0)
+        throw "Average speed must be a positive number!";
+
+    this->averageSpeed = averageSpeedToInt;
+}

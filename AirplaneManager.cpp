@@ -28,13 +28,23 @@ void AirplaneManager::addAirplane()
 
     showAirplaneClasses();
 
-    int classId;
+    std::string classId;
     std::cout << "Choose class id: ";
     std::cin >> classId;
 
-    int averageSpeed;
-    int tankVolume;
-    double fuelConsumptionPerKm;
+    int classIdToInt;
+    try {
+        classIdToInt = std::stoi(classId);
+    } catch (const std::invalid_argument& ia) {
+        throw "Class ID should be an integer!";
+    }
+
+    if (!airplaneClassIdExists(classIdToInt))
+        throw "No such class ID!";
+
+    std::string averageSpeed;
+    std::string tankVolume;
+    std::string fuelConsumptionPerKm;
 
     std::cout << "Average speed(km/h): ";
     std::cin >> averageSpeed;
@@ -44,25 +54,40 @@ void AirplaneManager::addAirplane()
     std::cin >> fuelConsumptionPerKm;
 
     Airplane* airplane = new Airplane(averageSpeed, tankVolume, fuelConsumptionPerKm);
-    airplane->setClassId(classId);
+    airplane->setClassId(classIdToInt);
 
+    addAirplaneByClassId(airplane, classIdToInt);
+}
+
+bool AirplaneManager::airplaneClassIdExists(int id)
+{
     for (AirplaneClass* a : airplaneClasses)
     {
-        if (a->getId() == classId)
+        if (a->getId() == id)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void AirplaneManager::addAirplaneByClassId(Airplane *airplane, int id)
+{
+    for (AirplaneClass *a : airplaneClasses)
+    {
+        if (a->getId() == id)
         {
             a->addAirplane(airplane);
         }
     }
 }
 
-
-
 void AirplaneManager::addAirplaneClass()
 {
     std::string manufacturer;
     std::string model;
-    int seats;
-    int trackLength;
+    std::string seats;
+    std::string trackLength;
 
     std::cout << "Manufacturer: ";
     std::cin >> std::ws;
@@ -97,8 +122,8 @@ void AirplaneManager::loadAirplaneClasses()
 {
     std::ifstream in("airplaneClasses.txt");
 
-    int id, seats, trackLength;
-    std::string manufacturer, model;
+    int id;
+    std::string manufacturer, model, seats, trackLength;
 
     while (in >> id >> manufacturer >> model >> seats >> trackLength)
     {
@@ -115,7 +140,8 @@ void AirplaneManager::loadAirplanes()
 {
     std::ifstream in("airplanes.txt");
 
-    int id, classId, averageSpeed, tankVolume, fuelConsumptionPerKm;
+    int id, classId;
+    std::string averageSpeed, tankVolume, fuelConsumptionPerKm;
 
     int count = 0;
     while (in >> id >> classId >> averageSpeed >> tankVolume >> fuelConsumptionPerKm)

@@ -1,35 +1,35 @@
 # depslib dependency file v1.0
-1545957026 source:d:\codeblocks projects\oop-project\main.cpp
+1546102269 source:d:\codeblocks projects\oop-project\main.cpp
 	<iostream>
-	<stdlib.h>
-	<vector>
+	<cstdlib>
 	"AirplaneManager.hpp"
 	"AirplaneClass.hpp"
 	"FlightManager.hpp"
 	"Airplane.hpp"
 
-1545957026 source:d:\codeblocks projects\oop-project\airplane.cpp
+1546102535 source:d:\codeblocks projects\oop-project\airplane.cpp
 	"Airplane.hpp"
 
-1545865620 d:\codeblocks projects\oop-project\airplane.hpp
+1546102535 d:\codeblocks projects\oop-project\airplane.hpp
 	<iostream>
 
-1545955486 d:\codeblocks projects\oop-project\airplaneclass.hpp
+1546100463 d:\codeblocks projects\oop-project\airplaneclass.hpp
 	<string>
 	<vector>
 	"Airplane.hpp"
 
-1545957634 source:d:\codeblocks projects\oop-project\airplaneclass.cpp
+1546102349 source:d:\codeblocks projects\oop-project\airplaneclass.cpp
+	<string>
 	"AirplaneClass.hpp"
 
-1545957026 source:d:\codeblocks projects\oop-project\airplanemanager.cpp
+1546102365 source:d:\codeblocks projects\oop-project\airplanemanager.cpp
 	"AirplaneManager.hpp"
 	<vector>
 	<iostream>
 	<fstream>
 	<sstream>
 
-1545955455 d:\codeblocks projects\oop-project\airplanemanager.hpp
+1546115714 d:\codeblocks projects\oop-project\airplanemanager.hpp
 	<vector>
 	"AirplaneClass.hpp"
 

@@ -1,3 +1,4 @@
+#include <string>
 #include "AirplaneClass.hpp"
 
 std::vector<Airplane*> airplanes;
@@ -7,7 +8,7 @@ AirplaneClass::AirplaneClass()
     this->id = (++AirplaneClass::count);
 }
 
-AirplaneClass::AirplaneClass(std::string manufacturer, std::string model, int seats, int trackLength)
+AirplaneClass::AirplaneClass(std::string manufacturer, std::string model, std::string seats, std::string trackLength)
 {
     setManufacturer(manufacturer);
     setModel(model);
@@ -49,7 +50,7 @@ int AirplaneClass::getId() { return id; }
 
 std::string AirplaneClass::getManufacturer() const { return manufacturer; }
 
-std::string AirplaneClass::getModel() const { return model; }
+std::string AirplaneClass::getModel() { return model; }
 
 int AirplaneClass::getSeats() const { return seats; }
 
@@ -60,31 +61,49 @@ void AirplaneClass::setId(int id) { this->id = id; }
 void AirplaneClass::setManufacturer(std::string manufacturer)
 {
     if (manufacturer.empty() || manufacturer.length() <= 1)
-        throw "Manufacturer name should be at least 2 characters!";
+        throw "Manufacturer name must be at least 2 characters!";
     this->manufacturer = manufacturer;
 }
 
 void AirplaneClass::setModel(std::string model)
 {
     if (model.empty() || model.length() <= 1)
-        throw "Model name should be at least 2 characters!";
+        throw "Model name must be at least 2 characters!";
     this->model = model;
 }
 
-void AirplaneClass::setSeats(int seats)
+void AirplaneClass::setSeats(std::string seats)
 {
-    if (seats <= 0)
+    int seatsToInt;
+
+    try {
+        seatsToInt = std::stoi(seats);
+    } catch (const std::invalid_argument& ia) {
+        throw "Number of seats must be an integer!";
+    }
+
+
+    if (seatsToInt <= 0)
         throw "Number of seats must be a positive number!";
 
-    this->seats = seats;
+    this->seats = seatsToInt;
 }
 
-void AirplaneClass::setTrackLength(int trackLength)
+void AirplaneClass::setTrackLength(std::string trackLength)
 {
-    if (trackLength <= 0)
+    int trackLengthToInt;
+
+    try {
+        trackLengthToInt = std::stoi(trackLength);
+    } catch (const std::invalid_argument& ia) {
+        throw "Track length must be an integer!";
+    }
+
+
+    if (trackLengthToInt <= 0)
         throw "Track length must be a positive number!";
 
-    this->trackLength = trackLength;
+    this->trackLength = trackLengthToInt;
 }
 
 std::vector<Airplane*> AirplaneClass::getAirplanes()
